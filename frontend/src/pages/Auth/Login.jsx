@@ -110,10 +110,7 @@ const Login = () => {
                     <button type="submit" disabled={loading} className="btn w-100 py-2 fw-bold rounded-3 mt-3 d-flex justify-content-center align-items-center text-white transition-all shadow-sm" style={{ backgroundColor: '#2563eb' }}>
                         {loading ? <><span className="spinner-border spinner-border-sm me-2"></span> Đang xử lý...</> : 'Đăng nhập'}
                     </button>
-
-                    <p className="text-center text-secondary m-0 mt-3" style={{ fontSize: '12px' }}>
-                        Mẹo: dùng <span className="text-primary fw-medium">admin</span> / <span className="text-primary fw-medium">admin</span> để vào trang quản trị
-                    </p>
+                    
                 </form>
             </div>
 
