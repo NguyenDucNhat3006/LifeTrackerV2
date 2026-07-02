@@ -1,0 +1,52 @@
+/* TÙY CHỈNH GIAO DIỆN REACT QUILL GIỐNG THIẾT KẾ GỐC */
+
+/* 1. Thiết lập Flexbox để cho phép đảo ngược vị trí */
+.custom-quill {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* 2. Đẩy khu vực soạn thảo (Textarea) LÊN TRÊN và xóa viền */
+.custom-quill .ql-container.ql-snow {
+  order: 1; /* Vị trí số 1 */
+  flex-grow: 1;
+  border: none !important; 
+  font-family: inherit !important;
+  font-size: 15px !important;
+}
+
+/* Chỉnh lại lề và màu chữ cho vùng gõ */
+.custom-quill .ql-editor {
+  padding: 16px 0 !important;
+  color: #334155;
+}
+
+/* Canh lại chữ mờ Placeholder "Hôm nay của bạn..." */
+.custom-quill .ql-editor.ql-blank::before {
+  left: 0 !important;
+  color: #94a3b8 !important;
+  font-style: normal !important;
+}
+
+/* 3. Đẩy thanh công cụ (Toolbar) XUỐNG DƯỚI CÙNG và căn giữa */
+.custom-quill .ql-toolbar.ql-snow {
+  order: 2; /* Vị trí số 2 */
+  border: none !important;
+  border-top: 1px dashed #e2e8f0 !important; /* Đường đứt nét ngăn cách ở trên */
+  padding: 16px 0 8px 0 !important;
+  display: flex;
+  justify-content: center; /* Căn giữa các nút y hệt bản thiết kế */
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* Làm đẹp hiệu ứng di chuột (Hover) cho các nút công cụ */
+.custom-quill .ql-toolbar button {
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+.custom-quill .ql-toolbar button:hover {
+  background-color: #f1f5f9 !important;
+  color: #2563eb !important;
+}
