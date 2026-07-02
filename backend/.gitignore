@@ -1,0 +1,9 @@
+.env
+
+node_modules/
+
+vendor/
+
+*.log
+
+docker-compose.override.yml

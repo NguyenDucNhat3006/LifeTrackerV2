@@ -11,9 +11,6 @@ class Database
 
     public function __construct()
     {
-        // Nếu có Environment Variables thì dùng
-        // Không có thì dùng giá trị Local
-
         $this->host = getenv("DB_HOST") ?: "host.docker.internal";
         $this->db_name = getenv("DB_NAME") ?: "lifetracker_db";
         $this->username = getenv("DB_USER") ?: "root";
