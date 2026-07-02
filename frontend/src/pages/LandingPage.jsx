@@ -2,6 +2,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Sparkles } from 'lucide-react';
 import logo from '../assets/logo/logo.png';
+import loopydingu from '../assets/pictures/loopydingu.jpg';
+import loopydivesinh from '../assets/pictures/loopydivesinh.jpg';
+import loopyhamieng from '../assets/pictures/loopyhamieng.jpg';
+import loopykhoc from '../assets/pictures/loopykhoc.jpg';
+import loopynguvakhoc from '../assets/pictures/loopynguvakhoc.jpg';
 
 const LandingPage = () => {
     const navigate = useNavigate();
@@ -42,9 +47,9 @@ const LandingPage = () => {
             <main className="container py-5 d-flex flex-column align-items-center text-center mt-5">
                 <h1 className="display-4 fw-bold mb-5" style={{ color: '#1e3a8a' }}>Tối ưu công việc, làm chủ thời gian</h1>
 
-                <div className="w-100 rounded-4 d-flex align-items-center justify-content-center mb-5 bg-white shadow-sm border border-light"
+                <div className="w-100 rounded-4 overflow-hidden mb-5 bg-white shadow-sm border border-light"
                     style={{ maxWidth: '900px', height: '300px' }}>
-                    <p className="text-secondary fst-italic m-0">*Ảnh dashboard minh họa*</p>
+                    <img src={loopydingu} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
 
                 <Link to="/register" className="btn btn-lg fw-bold px-5 py-3 rounded-pill mb-5 shadow text-white transition-all hover-shadow"
@@ -59,8 +64,8 @@ const LandingPage = () => {
                         <div className="card h-100 p-4 rounded-4 bg-white border-0 shadow-sm d-flex flex-column transition-all hover-shadow">
                             <h5 className="fw-bold text-center mb-3" style={{ color: '#1e3a8a' }}>Quản lý công việc</h5>
                             <p className="small text-secondary text-center mb-4">Chia nhỏ mục tiêu và theo dõi tiến độ dễ dàng chỉ bằng thao tác kéo - thả</p>
-                            <div className="rounded-3 d-flex align-items-center justify-content-center mt-auto" style={{ height: '128px', backgroundColor: '#f3f4f6' }}>
-                                <span className="small text-secondary">*Ảnh tab task*</span>
+                            <div className="rounded-3 overflow-hidden mt-auto" style={{ height: '128px', backgroundColor: '#f3f4f6' }}>
+                                <img src={loopyhamieng} alt="Habit tab" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </div>
                         </div>
                     </div>
@@ -69,8 +74,8 @@ const LandingPage = () => {
                         <div className="card h-100 p-4 rounded-4 bg-white border-0 shadow-sm d-flex flex-column">
                             <h5 className="fw-bold text-center mb-3" style={{ color: '#1e3a8a' }}>Xây dựng kỷ luật</h5>
                             <p className="small text-secondary text-center mb-4">Đánh dấu những việc làm tốt mỗi ngày để duy trì động lực và bỏ thói quen xấu</p>
-                            <div className="rounded-3 d-flex align-items-center justify-content-center mt-auto" style={{ height: '128px', backgroundColor: '#f3f4f6' }}>
-                                <span className="small text-secondary">*Ảnh tab habit*</span>
+                            <div className="rounded-3 overflow-hidden mt-auto" style={{ height: '128px', backgroundColor: '#f3f4f6' }}>
+                                <img src={loopydivesinh} alt="Habit tab" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </div>
                         </div>
                     </div>
@@ -79,8 +84,8 @@ const LandingPage = () => {
                         <div className="card h-100 p-4 rounded-4 bg-white border-0 shadow-sm d-flex flex-column">
                             <h5 className="fw-bold text-center mb-3" style={{ color: '#1e3a8a' }}>Bao quát tiến độ</h5>
                             <p className="small text-secondary text-center mb-4">Mọi lịch trình và deadline trên một màn hình, giúp bạn luôn đi trước một bước</p>
-                            <div className="rounded-3 d-flex align-items-center justify-content-center mt-auto" style={{ height: '128px', backgroundColor: '#f3f4f6' }}>
-                                <span className="small text-secondary">*Ảnh tab calendar*</span>
+                            <div className="rounded-3 overflow-hidden mt-auto" style={{ height: '128px', backgroundColor: '#f3f4f6' }}>
+                                <img src={loopykhoc} alt="Habit tab" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </div>
                         </div>
                     </div>
@@ -89,8 +94,8 @@ const LandingPage = () => {
                         <div className="card h-100 p-4 rounded-4 bg-white border-0 shadow-sm d-flex flex-column">
                             <h5 className="fw-bold text-center mb-3" style={{ color: '#1e3a8a' }}>Không gian riêng tư</h5>
                             <p className="small text-secondary text-center mb-4">Góc an toàn để bạn tự do ghi chép, nhìn lại bản thân và giải tỏa áp lực</p>
-                            <div className="rounded-3 d-flex align-items-center justify-content-center mt-auto" style={{ height: '128px', backgroundColor: '#f3f4f6' }}>
-                                <span className="small text-secondary">*Ảnh tab nhật ký*</span>
+                            <div className="rounded-3 overflow-hidden mt-auto" style={{ height: '128px', backgroundColor: '#f3f4f6' }}>
+                                <img src={loopynguvakhoc} alt="Habit tab" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </div>
                         </div>
                     </div>
