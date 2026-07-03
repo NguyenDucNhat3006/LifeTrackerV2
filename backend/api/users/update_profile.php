@@ -4,7 +4,10 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') { http_response_code(200); exit(); }
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
 
 include_once '../../config/database.php';
 $db = (new Database())->getConnection();
@@ -29,11 +32,13 @@ if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
     // Tạo tên file ngẫu nhiên để không bị trùng
     $fileName = time() . '_' . basename($_FILES['avatar']['name']);
     $targetFilePath = $uploadDir . $fileName;
-    
+
     // Di chuyển file từ bộ nhớ tạm vào thư mục
     if (move_uploaded_file($_FILES['avatar']['tmp_name'], $targetFilePath)) {
         // Lưu đường dẫn tuyệt đối để Frontend dễ đọc
-        $avatarPath = 'http://127.0.0.1:8080/is207_project/backend/uploads/avatars/' . $fileName;
+        $baseUrl = getenv("APP_URL") ?: "http://127.0.0.1:8080/is207_project/backend";
+
+        $avatarPath = $baseUrl . "/uploads/avatars/" . $fileName;
     }
 }
 
@@ -41,9 +46,9 @@ if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
 try {
     $query = "UPDATE users SET username = :username, email = :email, avatar = :avatar";
     $params = [
-        ':username' => $username, 
-        ':email' => $email, 
-        ':avatar' => $avatarPath, 
+        ':username' => $username,
+        ':email' => $email,
+        ':avatar' => $avatarPath,
         ':id' => $user_id
     ];
 
