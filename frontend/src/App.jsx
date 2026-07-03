@@ -1,52 +1,64 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LandingPage from './pages/LandingPage';
-import Login from './pages/Auth/Login';
-import Register from './pages/Auth/Register';
+import { lazy, Suspense } from 'react'; // Import thêm công cụ để sử dụng kỹ thuật code splitting
+
 import ProtectedRoute from './components/ProtectedRoute';
 import MainLayout from './components/MainLayout';
-import Dashboard from './pages/Dashboard/Dashboard';
-import TodoList from './pages/Dashboard/TodoList';
-import HabitTracker from './pages/Dashboard/HabitTracker';
-import Calendar from './pages/Dashboard/Calendar';
-import Journal from './pages/Dashboard/Journal';
-import Countdown from './pages/Dashboard/Countdown';
-import AdminDashboard from './pages/Admin/AdminDashboard';
-import UserManagement from './pages/Admin/UserManagement';
-import Settings from './pages/Dashboard/Settings';
+
+// import các trang dưới dạng Lazy load
+const LandingPage = lazy(() => import('./pages/LandingPage'));
+const Login = lazy(() => import('./pages/Auth/Login'));
+const Register = lazy(() => import('./pages/Auth/Register'));
+const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'));
+const TodoList = lazy(() => import('./pages/Dashboard/TodoList'));
+const HabitTracker = lazy(() => import('./pages/Dashboard/HabitTracker'));
+const Calendar = lazy(() => import('./pages/Dashboard/Calendar'));
+const Journal = lazy(() => import('./pages/Dashboard/Journal'));
+const Countdown = lazy(() => import('./pages/Dashboard/Countdown'));
+const AdminDashboard = lazy(() => import('./pages/Admin/AdminDashboard'));
+const UserManagement = lazy(() => import('./pages/Admin/UserManagement'));
+const Settings = lazy(() => import('./pages/Dashboard/Settings'));
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/" element={<LandingPage />} />
+      <Suspense 
+        fallback={
+          <div className="d-flex justify-content-center align-items-center vh-100 bg-dark">
+            <div className="spinner-border text-success" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        }
+      >
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<LandingPage />} />
 
-        {/* KHU VỰC DÀNH RIÊNG CHO NGƯỜI DÙNG (USER)  */}
-        <Route element={<ProtectedRoute allowedRole="user"><MainLayout /></ProtectedRoute>}>
-          <Route path="/app" element={<Dashboard />} />
-          <Route path="/todo" element={<TodoList />} />
-          <Route path="/habit" element={<HabitTracker />} />
-          <Route path="/calendar" element={<Calendar />} />
-          <Route path="/journal" element={<Journal />} />
-          <Route path="/timer" element={<Countdown />} />
-          <Route path="/settings" element={<Settings />} />
-        </Route>
+          <Route element={<ProtectedRoute allowedRole="user"><MainLayout /></ProtectedRoute>}>
+            <Route path="/app" element={<Dashboard />} />
+            <Route path="/todo" element={<TodoList />} />
+            <Route path="/habit" element={<HabitTracker />} />
+            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/journal" element={<Journal />} />
+            <Route path="/timer" element={<Countdown />} />
+            <Route path="/settings" element={<Settings />} />
+          </Route>
 
-        {/* KHU VỰC DÀNH RIÊNG CHO QUẢN TRỊ VIÊN (ADMIN)  */}
-        <Route path="/admin" element={
-          <ProtectedRoute allowedRole="admin">
-            <AdminDashboard />
-          </ProtectedRoute>
-        } />
+          <Route path="/admin" element={
+            <ProtectedRoute allowedRole="admin">
+              <AdminDashboard />
+            </ProtectedRoute>
+          } />
 
-        <Route path="/admin/users" element={
-          <ProtectedRoute allowedRole="admin">
-            <UserManagement />
-          </ProtectedRoute>
-        } />
+          <Route path="/admin/users" element={
+            <ProtectedRoute allowedRole="admin">
+              <UserManagement />
+            </ProtectedRoute>
+          } />
 
-      </Routes>
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

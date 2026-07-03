@@ -1,5 +1,3 @@
-/* TÙY CHỈNH GIAO DIỆN REACT QUILL GIỐNG THIẾT KẾ GỐC */
-
 /* 1. Thiết lập Flexbox để cho phép đảo ngược vị trí */
 .custom-quill {
   display: flex;

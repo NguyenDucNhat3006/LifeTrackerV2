@@ -5,6 +5,8 @@ import { Search, Plus, Type, Edit2, Image as ImageIcon, Mic, Trash2 } from 'luci
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
 import API_URL from '../../config/api';
+import { Helmet } from 'react-helmet-async';
+
 
 const Journal = () => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -97,131 +99,137 @@ const Journal = () => {
     );
 
     return (
-        <div className="container-fluid p-4 p-md-5 mx-auto h-100 d-flex flex-column" style={{ maxWidth: '1400px', fontFamily: 'sans-serif' }}>
+        <><Helmet>
+            <title>LifeTracker | Nhật ký</title>
+            <meta name="description" content="Nhật ký lưu trữ những kỉ niệm của bạn ngày hôm nay" />
+        </Helmet>
 
-            {/* HEADER */}
-            <div className="d-flex justify-content-between align-items-end mb-4 flex-shrink-0">
-                <div>
-                    <div className="d-flex align-items-center gap-3">
-                        <h1 className="fw-bold m-0" style={{ color: '#1e3a8a' }}>Nhật ký</h1>
-                        <span className="text-secondary fw-medium fs-6 mt-2">Journal</span>
+            <div className="container-fluid p-4 p-md-5 mx-auto h-100 d-flex flex-column" style={{ maxWidth: '1400px', fontFamily: 'sans-serif' }}>
+
+                {/* HEADER */}
+                <div className="d-flex justify-content-between align-items-end mb-4 flex-shrink-0">
+                    <div>
+                        <div className="d-flex align-items-center gap-3">
+                            <h1 className="fw-bold m-0" style={{ color: '#1e3a8a' }}>Nhật ký</h1>
+                            <span className="text-secondary fw-medium fs-6 mt-2">Journal</span>
+                        </div>
+                        <p className="text-secondary small m-0 mt-1">{todayFormat}</p>
                     </div>
-                    <p className="text-secondary small m-0 mt-1">{todayFormat}</p>
-                </div>
 
-                <div>
-                    <button onClick={handleCreate} className="btn text-white fw-bold d-flex align-items-center gap-2 px-4 py-2 shadow-sm" style={{ backgroundColor: '#2563eb', borderRadius: '8px' }}>
-                        <Plus size={18} /> Bài mới
-                    </button>
-                </div>
-            </div>
-
-            {/* MAIN CONTENT ROW */}
-            <div className="row g-4 flex-grow-1 overflow-hidden pb-4">
-
-                {/* CỘT TRÁI: DANH SÁCH TÌM KIẾM */}
-                <div className="col-12 col-lg-4 h-100">
-                    <div className="card border-0 shadow-sm rounded-4 h-100 bg-white p-3 d-flex flex-column">
-
-                        <div className="position-relative mb-4 flex-shrink-0">
-                            <Search size={18} className="position-absolute text-secondary" style={{ top: '12px', left: '16px' }} />
-                            <input
-                                type="text"
-                                className="form-control border-0 shadow-none py-2"
-                                style={{ backgroundColor: '#f1f5f9', paddingLeft: '44px', borderRadius: '12px', color: '#1e293b' }}
-                                placeholder="Tìm nhật ký..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                            />
-                        </div>
-
-                        <div className="d-flex flex-column gap-2 overflow-y-auto flex-grow-1 pe-2" style={{ scrollbarWidth: 'thin' }}>
-                            {filteredJournals.length === 0 ? (
-                                <div className="text-center text-secondary small fst-italic py-4">Không tìm thấy bài viết nào.</div>
-                            ) : (
-                                filteredJournals.map(journal => {
-                                    const isActive = journal.id === activeId;
-                                    return (
-                                        <div
-                                            key={journal.id}
-                                            onClick={() => setActiveId(journal.id)}
-                                            className={`p-3 rounded-4 transition-all ${isActive ? 'border' : 'border border-transparent hover-bg-light'}`}
-                                            style={{
-                                                cursor: 'pointer',
-                                                backgroundColor: isActive ? '#eff6ff' : 'transparent',
-                                                borderColor: isActive ? '#bfdbfe' : 'transparent'
-                                            }}
-                                        >
-                                            <div className={`small fw-medium mb-1 ${isActive ? 'text-secondary' : 'text-secondary'}`} style={{ fontSize: '13px' }}>
-                                                {formatDate(journal.created_at)}
-                                            </div>
-                                            <h6 className="fw-bold mb-1 text-truncate text-dark" style={{ fontSize: '15px' }}>{journal.title}</h6>
-                                            <p className="small text-secondary m-0 text-truncate">
-                                                {/* Xóa thẻ HTML bằng regex đơn giản để hiển thị Text trơn */}
-                                                {journal.content ? journal.content.replace(/<[^>]+>/g, '') : 'Chưa có nội dung...'}
-                                            </p>
-                                        </div>
-                                    );
-                                })
-                            )}
-                        </div>
+                    <div>
+                        <button onClick={handleCreate} className="btn text-white fw-bold d-flex align-items-center gap-2 px-4 py-2 shadow-sm" style={{ backgroundColor: '#2563eb', borderRadius: '8px' }}>
+                            <Plus size={18} /> Bài mới
+                        </button>
                     </div>
                 </div>
 
-                {/* CỘT PHẢI: TRÌNH SOẠN THẢO (EDITOR) */}
-                <div className="col-12 col-lg-8 h-100">
-                    {activeJournal ? (
-                        <div className="card border-0 shadow-sm rounded-4 h-100 bg-white p-4 d-flex flex-column">
+                {/* MAIN CONTENT ROW */}
+                <div className="row g-4 flex-grow-1 overflow-hidden pb-4">
 
-                            {/* Khối Title */}
-                            <div className="rounded-4 p-3 mb-3 border border-light position-relative" style={{ backgroundColor: '#f8fafc' }}>
-                                <div className="d-flex justify-content-between align-items-start mb-1">
-                                    <div className="text-secondary small fw-medium">{formatDate(activeJournal.created_at)}</div>
-                                    <button onClick={() => handleDelete(activeJournal.id)} className="btn btn-link text-danger p-0" title="Xóa bài này">
-                                        <Trash2 size={16} />
-                                    </button>
-                                </div>
+                    {/* CỘT TRÁI: DANH SÁCH TÌM KIẾM */}
+                    <div className="col-12 col-lg-4 h-100">
+                        <div className="card border-0 shadow-sm rounded-4 h-100 bg-white p-3 d-flex flex-column">
+
+                            <div className="position-relative mb-4 flex-shrink-0">
+                                <Search size={18} className="position-absolute text-secondary" style={{ top: '12px', left: '16px' }} />
                                 <input
                                     type="text"
-                                    className="form-control border-0 bg-transparent shadow-none px-0 fw-bold fs-5"
-                                    style={{ color: '#1e293b' }}
-                                    value={editTitle}
-                                    onChange={(e) => setEditTitle(e.target.value)}
-                                    onBlur={handleSave}
-                                    placeholder="Tiêu đề nhật ký..."
+                                    className="form-control border-0 shadow-none py-2"
+                                    style={{ backgroundColor: '#f1f5f9', paddingLeft: '44px', borderRadius: '12px', color: '#1e293b' }}
+                                    placeholder="Tìm nhật ký..."
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
                                 />
                             </div>
 
-                            {/* Khối Textarea */}
-                            <div className="rounded-4 p-3 flex-grow-1 d-flex flex-column border border-light mb-3 bg-white" style={{ minHeight: '400px' }}>
-                                <ReactQuill
-                                    theme="snow"
-                                    value={editContent}
-                                    onChange={setEditContent}
-                                    onBlur={handleSave}
-                                    placeholder="Hôm nay của bạn thế nào?..."
-                                    className="h-100 d-flex flex-column custom-quill"
-                                    modules={{
-                                        toolbar: [
-                                            [{ 'header': [1, 2, 3, false] }],
-                                            ['bold', 'italic', 'underline', 'strike'],
-                                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                                            ['image', 'link'],
-                                            ['clean']
-                                        ]
-                                    }}
-                                />
+                            <div className="d-flex flex-column gap-2 overflow-y-auto flex-grow-1 pe-2" style={{ scrollbarWidth: 'thin' }}>
+                                {filteredJournals.length === 0 ? (
+                                    <div className="text-center text-secondary small fst-italic py-4">Không tìm thấy bài viết nào.</div>
+                                ) : (
+                                    filteredJournals.map(journal => {
+                                        const isActive = journal.id === activeId;
+                                        return (
+                                            <div
+                                                key={journal.id}
+                                                onClick={() => setActiveId(journal.id)}
+                                                className={`p-3 rounded-4 transition-all ${isActive ? 'border' : 'border border-transparent hover-bg-light'}`}
+                                                style={{
+                                                    cursor: 'pointer',
+                                                    backgroundColor: isActive ? '#eff6ff' : 'transparent',
+                                                    borderColor: isActive ? '#bfdbfe' : 'transparent'
+                                                }}
+                                            >
+                                                <div className={`small fw-medium mb-1 ${isActive ? 'text-secondary' : 'text-secondary'}`} style={{ fontSize: '13px' }}>
+                                                    {formatDate(journal.created_at)}
+                                                </div>
+                                                <h6 className="fw-bold mb-1 text-truncate text-dark" style={{ fontSize: '15px' }}>{journal.title}</h6>
+                                                <p className="small text-secondary m-0 text-truncate">
+                                                    {/* Xóa thẻ HTML bằng regex đơn giản để hiển thị Text trơn */}
+                                                    {journal.content ? journal.content.replace(/<[^>]+>/g, '') : 'Chưa có nội dung...'}
+                                                </p>
+                                            </div>
+                                        );
+                                    })
+                                )}
                             </div>
                         </div>
-                    ) : (
-                        <div className="card border-0 shadow-sm rounded-4 h-100 bg-white d-flex align-items-center justify-content-center text-secondary fst-italic">
-                            Chọn hoặc tạo một nhật ký mới để bắt đầu.
-                        </div>
-                    )}
+                    </div>
+
+                    {/* CỘT PHẢI: TRÌNH SOẠN THẢO (EDITOR) */}
+                    <div className="col-12 col-lg-8 h-100">
+                        {activeJournal ? (
+                            <div className="card border-0 shadow-sm rounded-4 h-100 bg-white p-4 d-flex flex-column">
+
+                                {/* Khối Title */}
+                                <div className="rounded-4 p-3 mb-3 border border-light position-relative" style={{ backgroundColor: '#f8fafc' }}>
+                                    <div className="d-flex justify-content-between align-items-start mb-1">
+                                        <div className="text-secondary small fw-medium">{formatDate(activeJournal.created_at)}</div>
+                                        <button onClick={() => handleDelete(activeJournal.id)} className="btn btn-link text-danger p-0" title="Xóa bài này">
+                                            <Trash2 size={16} />
+                                        </button>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        className="form-control border-0 bg-transparent shadow-none px-0 fw-bold fs-5"
+                                        style={{ color: '#1e293b' }}
+                                        value={editTitle}
+                                        onChange={(e) => setEditTitle(e.target.value)}
+                                        onBlur={handleSave}
+                                        placeholder="Tiêu đề nhật ký..."
+                                    />
+                                </div>
+
+                                {/* Khối Textarea */}
+                                <div className="rounded-4 p-3 flex-grow-1 d-flex flex-column border border-light mb-3 bg-white" style={{ minHeight: '400px' }}>
+                                    <ReactQuill
+                                        theme="snow"
+                                        value={editContent}
+                                        onChange={setEditContent}
+                                        onBlur={handleSave}
+                                        placeholder="Hôm nay của bạn thế nào?..."
+                                        className="h-100 d-flex flex-column custom-quill"
+                                        modules={{
+                                            toolbar: [
+                                                [{ 'header': [1, 2, 3, false] }],
+                                                ['bold', 'italic', 'underline', 'strike'],
+                                                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                                                ['image', 'link'],
+                                                ['clean']
+                                            ]
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="card border-0 shadow-sm rounded-4 h-100 bg-white d-flex align-items-center justify-content-center text-secondary fst-italic">
+                                Chọn hoặc tạo một nhật ký mới để bắt đầu.
+                            </div>
+                        )}
+                    </div>
+
                 </div>
-
             </div>
-        </div>
+        </>
     );
 };
 
