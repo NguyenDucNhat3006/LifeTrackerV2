@@ -1,0 +1,21 @@
+User-agent: *
+
+Allow: /
+Allow: /login
+Allow: /register
+
+Disallow: /api/
+Disallow: /backend/
+
+Disallow: /admin/
+Disallow: /admin/*
+
+Disallow: /app/
+Disallow: /todo/
+Disallow: /habit/
+Disallow: /calendar/
+Disallow: /journal/
+Disallow: /settings/
+Disallow: /timer/
+
+Sitemap: https://life-tracker-pi-three.vercel.app/sitemap.xml

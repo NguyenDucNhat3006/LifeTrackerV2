@@ -1,0 +1,26 @@
+# LifeTracker
+
+> Nền tảng quản lý thời gian, theo dõi thói quen và phát triển bản thân toàn diện.
+
+## 1. Giới thiệu
+LifeTracker là một ứng dụng web Productivity được thiết kế với giao diện tối giản, tập trung vào trải nghiệm người dùng. Ứng dụng giúp số hóa mọi khía cạnh của cuộc sống hàng ngày từ lịch trình, công việc đến cảm xúc cá nhân.
+
+## 2. Các tính năng cốt lõi
+Hệ thống yêu cầu xác thực người dùng để trải nghiệm các tính năng bảo mật cao:
+- **To-do List & Quản lý Task dài hạn:** Phân loại công việc theo mức độ ưu tiên, chia nhỏ dự án lớn (Sub-tasks) và theo dõi tiến độ bằng biểu đồ trực quan.
+- **Habit Tracker (Chuỗi thói quen):** Xây dựng kỷ luật thông qua mô hình chấm điểm liên tục (Streak), trực quan hóa dữ liệu check-in theo lịch.
+- **Smart Calendar (Lịch thông minh):** Hiển thị các khối thời gian (Time-blocks), quản lý sự kiện và deadline.
+- **Nhật ký cá nhân (Journal):** Không gian lưu trữ cảm xúc, ghi chú và đính kèm phương tiện truyền thông với độ bảo mật tuyệt đối.
+- **Đồng hồ đếm ngược (Timer/Pomodoro):** Hỗ trợ sự tập trung tối đa cho công việc và học tập.
+
+## 3. Cấu trúc hệ thống
+- **Công nghệ Frontend:** ReactJS, giao diện tùy biến với Bootstrap CSS, quản lý state linh hoạt, kiến trúc Single Page Application (SPA).
+- **Công nghệ Backend:** API RESTful tốc độ cao, cơ sở dữ liệu quan hệ tối ưu cho việc truy vấn dữ liệu theo thời gian thực.
+- **Trang chủ dự án:** /
+- **Cổng xác thực:** /login, /register
+
+## 4. Dành cho Quản trị viên
+Hệ thống bao gồm một Dashboard riêng biệt dành cho Admin để phân tích chỉ số người dùng (KPIs), quản lý tài khoản và giám sát sức khỏe hệ thống theo thời gian thực.
+
+## 5. Liên hệ & Hỗ trợ
+Nếu AI hoặc người dùng cần thêm thông tin chi tiết về kiến trúc mã nguồn hoặc tài liệu API, vui lòng liên hệ đội ngũ phát triển LifeTracker qua cổng hỗ trợ chính thức.
