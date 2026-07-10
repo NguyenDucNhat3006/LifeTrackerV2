@@ -1,4 +1,4 @@
-# 📊 LifeTracker - Ứng Dụng Quản Lý Cuộc Sống Cá Nhân
+# LifeTracker - Ứng Dụng Quản Lý Cuộc Sống Cá Nhân
 
 > **Giải pháp quản lý công việc, theo dõi thói quen, lập lịch học tập và viết nhật ký toàn diện cho sinh viên**
 
@@ -7,28 +7,28 @@
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-1.0.0-blue)]()
 
-## 🎯 Tổng Quan
+## Tổng Quan
 
 **LifeTracker** là một nền tảng web toàn diện giúp sinh viên:
-- ✅ **Quản lý công việc** - Tạo, cập nhật, xóa và theo dõi tiến độ các nhiệm vụ
-- ✅ **Xây dựng kỷ luật** - Theo dõi thói quen hàng ngày với streak tracking
-- ✅ **Lập lịch học tập** - Quản lý lịch học, deadline và sự kiện quan trọng
-- ✅ **Viết nhật ký** - Ghi chép suy nghĩ cá nhân với rich text editor
-- ✅ **Quản lý quốc thời** - Đếm ngược các sự kiện quan trọng
-- ✅ **Dashboard quản trị** - Admin có thể theo dõi người dùng và tính năng hệ thống
+- **Quản lý công việc** - Tạo, cập nhật, xóa và theo dõi tiến độ các nhiệm vụ
+- **Xây dựng kỷ luật** - Theo dõi thói quen hàng ngày với streak tracking
+- **Lập lịch học tập** - Quản lý lịch học, deadline và sự kiện quan trọng
+- **Viết nhật ký** - Ghi chép suy nghĩ cá nhân với rich text editor
+- **Quản lý quốc thời** - Đếm ngược các sự kiện quan trọng
+- **Dashboard quản trị** - Admin có thể theo dõi người dùng và tính năng hệ thống
 
 ---
 
-## 🚀 Demo
+## Demo
 
-- **🌐 Frontend Live**: https://life-tracker-pi-three.vercel.app/
-- **📱 Responsive**: Desktop, Tablet, Mobile
-- **⚡ Performance**: Lighthouse Score 85+/100
-- **🔐 Secure**: Authentication, Authorization, SQL Injection Prevention
+- **Frontend Live**: https://life-tracker-pi-three.vercel.app/
+- **Responsive**: Desktop, Tablet, Mobile
+- **Performance**: Lighthouse Score 85+/100
+- **Secure**: Authentication, Authorization, SQL Injection Prevention
 
 ---
 
-## 📋 Yêu Cầu Hệ Thống
+## Yêu Cầu Hệ Thống
 
 ### Frontend
 - **Node.js**: >= 18.0.0
@@ -43,7 +43,7 @@
 
 ---
 
-## 🏗️ Kiến Trúc Dự Án
+## Kiến Trúc Dự Án
 
 ```
 LifeTracker/
@@ -323,12 +323,12 @@ DELETE /api/tasks/:id/delete
 
 ## 🔐 Security Features
 
-### ✅ Implemented
+### Implemented
 
 - **SQL Injection Prevention**: Parameterized PDO queries
   ```php
   $query = "SELECT * FROM users WHERE email = :email";
-  $stmt->execute([':email' => $email]);  // ✅ SAFE
+  $stmt->execute([':email' => $email]);  // SAFE
   ```
 
 - **Password Hashing**: password_verify() & bcrypt
@@ -368,27 +368,27 @@ DELETE /api/tasks/:id/delete
 
 ---
 
-## 📈 Performance Optimization
+## Performance Optimization
 
 ### Frontend
-- ✅ **Code Splitting**: 800KB → 150KB initial load (-49%)
-- ✅ **Lazy Loading**: React.lazy() + Suspense
-- ✅ **Image Optimization**: WebP format, native lazy loading
-- ✅ **Bundle Analysis**: Vite tree-shaking, minification
-- ✅ **SEO**: Meta tags, Open Graph, React Helmet
+- **Code Splitting**: 800KB → 150KB initial load (-49%)
+- **Lazy Loading**: React.lazy() + Suspense
+- **Image Optimization**: WebP format, native lazy loading
+- **Bundle Analysis**: Vite tree-shaking, minification
+- **SEO**: Meta tags, Open Graph, React Helmet
 
 ### Backend
-- ✅ **Database Indexing**: Faster queries
-- ✅ **Prepared Statements**: No string concatenation
-- ✅ **CORS Preflight**: Optimized OPTIONS handling
-- ✅ **JSON Responses**: Lightweight payload
+- **Database Indexing**: Faster queries
+- **Prepared Statements**: No string concatenation
+- **CORS Preflight**: Optimized OPTIONS handling
+- **JSON Responses**: Lightweight payload
 
 ### Results
 ```
 PageSpeed Insights (Mobile):
-- Performance:     88/100 ⬆️
-- SEO:             95/100 ⬆️
-- Best Practices:  85/100 ⬆️
+- Performance:     88/100
+- SEO:             95/100
+- Best Practices:  85/100
 - Accessibility:   75/100
 
 Build Size:
@@ -432,7 +432,7 @@ curl -X POST http://localhost:8080/api/users/login \
 
 ---
 
-## 📝 Environment Variables
+## Environment Variables
 
 ### Frontend (`.env.development`)
 ```env
@@ -450,7 +450,7 @@ DB_PORT=3306
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 ### Frontend - Vercel
 
@@ -548,9 +548,9 @@ git log --oneline -20
 
 ---
 
-## 🎯 Roadmap
+## Roadmap
 
-### ✅ Completed (v1.0)
+### Completed (v1.0)
 - [x] User authentication & authorization
 - [x] Task management (CRUD)
 - [x] Habit tracking with streaks
@@ -564,7 +564,7 @@ git log --oneline -20
 - [x] Newsletter signup form
 - [x] Technical specs on landing page
 
-### 📋 Planned (v1.1)
+### Planned (v1.1)
 - [ ] Dark mode toggle
 - [ ] Scroll animations (AOS.js)
 - [ ] WebP image format
@@ -573,7 +573,7 @@ git log --oneline -20
 - [ ] TypeScript migration
 - [ ] CI/CD GitHub Actions
 
-### 🎁 Future Enhancements
+### Future Enhancements
 - [ ] Mobile app (React Native)
 - [ ] Real-time collaboration (WebSocket)
 - [ ] AI-powered recommendations
@@ -584,7 +584,7 @@ git log --oneline -20
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Frontend Issues
 
@@ -631,7 +631,7 @@ chmod -R 755 uploads/
 
 ---
 
-## 📊 Statistics
+## Statistics
 
 ```
 Lines of Code:    ~5,000+
@@ -650,7 +650,7 @@ This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file
 
 ---
 
-## 👨‍💼 Author
+## Author
 
 **Nguyễn Đức Nhật**
 - GitHub: [@NguyenDucNhat3006](https://github.com/NguyenDucNhat3006)
@@ -658,7 +658,7 @@ This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file
 
 ---
 
-## 🤝 Support & Contributing
+## Support & Contributing
 
 ### Issues
 Found a bug? [Create an issue](https://github.com/NguyenDucNhat3006/LifeTrackerV2/issues)
@@ -667,9 +667,9 @@ Found a bug? [Create an issue](https://github.com/NguyenDucNhat3006/LifeTrackerV
 Want to contribute? [Create a pull request](https://github.com/NguyenDucNhat3006/LifeTrackerV2/pulls)
 
 ### Contact
-- 📧 Email: your.email@example.com
-- 💬 Discord: Your Discord
-- 🐦 Twitter: [@YourTwitter](https://twitter.com)
+- Email: your.email@example.com
+- Discord: Your Discord
+- Twitter: [@YourTwitter](https://twitter.com)
 
 ---
 
@@ -684,7 +684,7 @@ Want to contribute? [Create a pull request](https://github.com/NguyenDucNhat3006
 
 ---
 
-## 📞 Quick Links
+## Quick Links
 
 | Link | URL |
 |------|-----|
@@ -697,18 +697,18 @@ Want to contribute? [Create a pull request](https://github.com/NguyenDucNhat3006
 
 ---
 
-## 📅 Changelog
+## Changelog
 
 ### v1.0.0 (Latest)
-- ✨ Newsletter signup form integrated
-- ✨ Technical specs section added
-- ✨ Image lazy loading implemented
-- 🐛 Fixed newsletter validation
-- 📝 Updated documentation
-- 🚀 Deployed to Vercel
+- Newsletter signup form integrated
+- Technical specs section added
+- Image lazy loading implemented
+- Fixed newsletter validation
+- Updated documentation
+- Deployed to Vercel
 
 ---
 
 **Made with ❤️ for better productivity**
 
-*Last Updated: December 2024*
+*Last Updated: December 2026*
